@@ -39,7 +39,7 @@ def hledani_predikatu(veta):
         elif token["upos"] == "AUX" and token["xpos"][0:2] in morfo_kategorie_predikatu_jmennych:
             pomocne_id_headu = token["head"]
             for token_pomocny in veta:
-                if token_pomocny["id"] == pomocne_id_headu and token["upos"] != "VERB":
+                if token_pomocny["id"] == pomocne_id_headu and token["upos"] == "VERB":
                     veta_predikaty.append(token["id"])
                 else:
                     pass 
