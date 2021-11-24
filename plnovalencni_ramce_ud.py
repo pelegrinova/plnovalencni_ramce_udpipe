@@ -36,8 +36,13 @@ def hledani_predikatu(veta):
         if token["upos"] == "VERB" and token["xpos"][0:2] in morfo_kategorie_predikatu: 
             veta_predikaty.append(token["id"])
 
-        elif token["upos"] == "AUX" and token["xpos"][0:2] in morfo_kategorie_predikatu_jmennych and token["deprel"] != "cop":  
-            veta_predikaty.append(token["head"]) 
+        elif token["upos"] == "AUX" and token["xpos"][0:2] in morfo_kategorie_predikatu_jmennych:
+            pomocne_id_headu = token["head"]
+            for token_pomocny in veta:
+                if token_pomocny["id"] == pomocne_id_headu and token["upos"] != "VERB":
+                    veta_predikaty.append(token["id"])
+                else:
+                    pass 
 
     veta_hotove_predikaty = sorted(set(veta_predikaty)) 
 
